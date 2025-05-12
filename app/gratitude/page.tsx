@@ -1,7 +1,5 @@
 import type { Metadata } from "next"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { PlusCircle } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Ali Shehral | With Love & Gratitude",
@@ -34,22 +32,20 @@ export default function GratitudePage() {
           With Love & Gratitude
         </h1>
         <p className="text-xl text-gray-300 mb-12 font-space">
-          Started on Mother's Day — 11 May 2025.{" "}
-          <span className="text-red-500">
-            To my aunt — for the unwavering support that's let me chase GPUs, guitars, and grand ideas. This site is my
-            tiny Mother's Day gift to you.
+          Started on Mother's Day — 11 May 2025.
+          <br />
+          <br />
+          <span className="text-red-500 italic">
+            To Salma, my aunt and de facto mother: thanks for being my unpaid life coach, IT support, and late-night
+            snack supplier—you made this site and all my academic adventures possible. Consider this digital bouquet
+            your official Mother's Day gift!
           </span>
         </p>
 
-        <div className="mb-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mb-12">
           <p className="text-gray-400 italic">
-            This wall of gratitude will continue to grow as I add more names of people who have made a difference in my
-            journey.
+            This wall of gratitude celebrates the people who have made a difference in my journey.
           </p>
-          <Button className="bg-red-700 hover:bg-red-600 text-white">
-            <PlusCircle className="mr-2 h-4 w-4" />
-            Add Your Name
-          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr">
