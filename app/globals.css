@@ -31,13 +31,7 @@
     @apply bg-gradient-to-br from-blue-50 via-blue-100 to-white;
   }
 
-  .border-glow {
-    @apply border border-[#d30000] shadow-[0_0_15px_rgba(211,0,0,0.5)];
-  }
-
-  .border-glow-light {
-    @apply border border-[#2563eb] shadow-[0_0_15px_rgba(37,99,235,0.5)];
-  }
+  /* Removed problematic border-glow classes */
 
   .hover-glow {
     @apply transition-all duration-300 hover:border-red-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.4)];
@@ -131,9 +125,7 @@
     @apply dark:bg-gradient-card bg-gradient-card-light;
   }
 
-  .border-theme-glow {
-    @apply dark:border-glow border-glow-light;
-  }
+  /* Removed border-theme-glow class */
 
   .hover-theme-glow {
     @apply dark:hover-glow hover-glow-light;

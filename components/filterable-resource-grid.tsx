@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Filter, Search } from 'lucide-react'
+import { Filter, Search } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 
@@ -60,6 +60,13 @@ export function FilterableResourceGrid({ resources, children, renderResource }: 
     setFilteredResources(result)
   }, [activeFilter, searchQuery, resources])
 
+  // Function to format tag display names
+  const formatTagName = (tag: string) => {
+    if (tag === "research-agenda") return "Research Agenda"
+    if (tag === "perspective") return "Perspective"
+    return tag.charAt(0).toUpperCase() + tag.slice(1)
+  }
+
   return (
     <div className="space-y-6 not-prose">
       <div className="flex flex-col sm:flex-row gap-4">
@@ -83,9 +90,9 @@ export function FilterableResourceGrid({ resources, children, renderResource }: 
       <Tabs defaultValue="all" value={activeFilter} onValueChange={setActiveFilter} className="w-full">
         <TabsList
           className={cn(
-            "w-full flex flex-row",
+            "w-full flex flex-wrap",
             isDark ? "bg-black border border-gray-800" : "bg-white border border-blue-200",
-            "p-1 rounded-lg"
+            "p-1 rounded-lg",
           )}
         >
           {tags.map((tag) => (
@@ -96,10 +103,10 @@ export function FilterableResourceGrid({ resources, children, renderResource }: 
                 "flex-1 capitalize",
                 isDark
                   ? "data-[state=active]:bg-red-950 data-[state=active]:text-white"
-                  : "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700"
+                  : "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700",
               )}
             >
-              {tag}
+              {formatTagName(tag)}
             </TabsTrigger>
           ))}
         </TabsList>
