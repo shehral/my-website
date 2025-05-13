@@ -2,18 +2,19 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { AIThemeToggle } from "./ai-theme-toggle"
 import { useTheme } from "next-themes"
+import { LogoFallback } from "./logo-fallback"
 
 export default function Navbar() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [logoError, setLogoError] = useState(false)
   const { theme, resolvedTheme } = useTheme()
   const isDark = resolvedTheme === "dark"
 
@@ -71,13 +72,16 @@ export default function Navbar() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
             <div className="h-8 w-8 relative">
-              <Image
-                src="/s-logo.png"
-                alt="Ali Shehral Logo"
-                width={32}
-                height={32}
-                className="w-full h-full object-contain"
-              />
+              {logoError ? (
+                <LogoFallback />
+              ) : (
+                <img
+                  src="/s-logo.png"
+                  alt="Ali Shehral Logo"
+                  className="w-full h-full object-contain"
+                  onError={() => setLogoError(true)}
+                />
+              )}
             </div>
             <span className={`text-xl font-sora font-bold ${isDark ? "text-gradient" : "text-gradient-light"}`}>
               Ali Shehral

@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   description: "MSCS student · President of NEURAI Lab · Builder of AI & Quant Finance tools",
   icons: {
     icon: "/s-logo.png",
+    apple: "/s-logo.png",
   },
     generator: 'v0.dev'
 }
@@ -42,6 +43,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/s-logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/s-logo.png" />
+      </head>
       <body className="min-h-screen flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
           <NeuralField />

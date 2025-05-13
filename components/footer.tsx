@@ -1,13 +1,15 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { Github, Twitter, Linkedin, ExternalLink } from "lucide-react"
 import { useTheme } from "next-themes"
+import { LogoFallback } from "./logo-fallback"
 
 export default function Footer() {
   const { theme } = useTheme()
   const isDark = theme === "dark"
+  const [logoError, setLogoError] = useState(false)
 
   return (
     <footer
@@ -17,13 +19,16 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start gap-2 mb-6 md:mb-0">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 relative">
-              <Image
-                src="/s-logo.png"
-                alt="Ali Shehral Logo"
-                width={32}
-                height={32}
-                className="w-full h-full object-contain"
-              />
+              {logoError ? (
+                <LogoFallback />
+              ) : (
+                <img
+                  src="/s-logo.png"
+                  alt="Ali Shehral Logo"
+                  className="w-full h-full object-contain"
+                  onError={() => setLogoError(true)}
+                />
+              )}
             </div>
             <div className={`text-xl font-sora font-bold ${isDark ? "text-gradient" : "text-gradient-light"}`}>
               Ali Shehral
