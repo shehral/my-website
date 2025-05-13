@@ -10,7 +10,8 @@ export default function AIPage() {
     <div className="prose prose-invert max-w-none">
       <h1 className="text-5xl md:text-6xl font-sora font-extrabold mb-8 text-gradient">My AI Universe</h1>
       <p className="text-xl">
-        I'm obsessed with <strong>interpretability, RL-driven execution, quantum finance, AI governance</strong> and
+        I'm interested in{" "}
+        <strong>AI interpretability, RL-based trading strategies, quantum computing, AI governance</strong> and
         everything in between.
       </p>
 

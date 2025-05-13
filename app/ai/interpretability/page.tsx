@@ -52,12 +52,12 @@ export default function InterpretabilityPage() {
         <ResourceCard
           title="Neel Nanda — Quickstart Guide"
           href="https://www.neelnanda.io/mechanistic-interpretability/quickstart"
-          description="A 2022 guide (continuously updated) to get hands-on fast."
+          description="A 2022 guide to get hands-on fast."
         />
 
         <ResourceCard
           title="Chris Olah & Anthropic Research"
-          href="https://www.anthropic.com/index/interpretability"
+          href="https://transformer-circuits.pub/"
           description="Anthropic's latest work on transformer interpretability."
         />
 

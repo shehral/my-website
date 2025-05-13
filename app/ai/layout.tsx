@@ -4,6 +4,8 @@ import type { ReactNode } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { ChevronDown, ChevronUp } from "lucide-react"
+import { useState } from "react"
 
 interface SidebarLinkProps {
   href: string
@@ -35,12 +37,31 @@ function SidebarLink({ href, children, className }: SidebarLinkProps) {
 }
 
 export default function AILayout({ children }: { children: ReactNode }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   return (
     <div className="container mx-auto py-24 px-4">
       <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
+        {/* Mobile Menu Button - Only visible on mobile */}
+        <div className="md:hidden sticky top-20 z-20 mb-4">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="w-full flex items-center justify-between bg-gradient-to-r from-red-950 to-black p-4 rounded-xl border border-gray-800 shadow-lg"
+          >
+            <h3 className="font-sora font-bold text-lg text-gradient">AI Universe</h3>
+            {mobileMenuOpen ? (
+              <ChevronUp className="h-5 w-5 text-red-500" />
+            ) : (
+              <ChevronDown className="h-5 w-5 text-red-500" />
+            )}
+          </button>
+        </div>
+
         {/* Sidebar */}
-        <aside className="bg-gradient-to-b from-red-950 to-black rounded-xl sticky top-24 h-fit border border-gray-800 shadow-lg">
-          <div className="p-4 border-b border-gray-800">
+        <aside
+          className={`bg-gradient-to-b from-red-950 to-black rounded-xl md:sticky md:top-24 h-fit border border-gray-800 shadow-lg ${mobileMenuOpen ? "block" : "hidden md:block"}`}
+        >
+          <div className="p-4 border-b border-gray-800 hidden md:block">
             <h3 className="font-sora font-bold text-lg text-gradient">AI Universe</h3>
           </div>
           <nav className="py-4">
