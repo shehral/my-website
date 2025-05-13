@@ -7,14 +7,13 @@ import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { AIThemeToggle } from "./ai-theme-toggle"
 import { useTheme } from "next-themes"
-import { LogoFallback } from "./logo-fallback"
+import { SLogo } from "./s-logo"
 
 export default function Navbar() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const [logoError, setLogoError] = useState(false)
   const { theme, resolvedTheme } = useTheme()
   const isDark = resolvedTheme === "dark"
 
@@ -71,17 +70,19 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
-            <div className="h-8 w-8 relative">
-              {logoError ? (
-                <LogoFallback />
-              ) : (
-                <img
-                  src="/s-logo.png"
-                  alt="Ali Shehral Logo"
-                  className="w-full h-full object-contain"
-                  onError={() => setLogoError(true)}
-                />
-              )}
+            <img
+              src="/s-logo.png"
+              alt="S Logo"
+              className="h-8 w-8"
+              onError={(e) => {
+                e.currentTarget.onerror = null
+                e.currentTarget.style.display = "none"
+                const fallbackEl = e.currentTarget.parentElement?.querySelector(".fallback-logo")
+                if (fallbackEl) fallbackEl.style.display = "block"
+              }}
+            />
+            <div className="fallback-logo" style={{ display: "none" }}>
+              <SLogo className="h-8 w-8" />
             </div>
             <span className={`text-xl font-sora font-bold ${isDark ? "text-gradient" : "text-gradient-light"}`}>
               Ali Shehral

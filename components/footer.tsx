@@ -1,15 +1,13 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { Github, Twitter, Linkedin, ExternalLink } from "lucide-react"
 import { useTheme } from "next-themes"
-import { LogoFallback } from "./logo-fallback"
+import { SLogo } from "./s-logo"
 
 export default function Footer() {
   const { theme } = useTheme()
   const isDark = theme === "dark"
-  const [logoError, setLogoError] = useState(false)
 
   return (
     <footer
@@ -18,17 +16,19 @@ export default function Footer() {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex flex-col items-center md:items-start gap-2 mb-6 md:mb-0">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 relative">
-              {logoError ? (
-                <LogoFallback />
-              ) : (
-                <img
-                  src="/s-logo.png"
-                  alt="Ali Shehral Logo"
-                  className="w-full h-full object-contain"
-                  onError={() => setLogoError(true)}
-                />
-              )}
+            <img
+              src="/s-logo.png"
+              alt="S Logo"
+              className="h-8 w-8"
+              onError={(e) => {
+                e.currentTarget.onerror = null
+                e.currentTarget.style.display = "none"
+                const fallbackEl = e.currentTarget.parentElement?.querySelector(".fallback-logo")
+                if (fallbackEl) fallbackEl.style.display = "block"
+              }}
+            />
+            <div className="fallback-logo" style={{ display: "none" }}>
+              <SLogo className="h-8 w-8" />
             </div>
             <div className={`text-xl font-sora font-bold ${isDark ? "text-gradient" : "text-gradient-light"}`}>
               Ali Shehral

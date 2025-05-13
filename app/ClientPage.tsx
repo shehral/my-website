@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ArrowRight, Github, Linkedin, Twitter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
+import { ProfileImage } from "@/components/profile-image"
 
 export default function ClientPage() {
   const { theme } = useTheme()
@@ -83,16 +84,7 @@ export default function ClientPage() {
               className={`aspect-square rounded-full ${isDark ? "bg-gradient-to-br from-red-700 to-red-950" : "bg-gradient-to-br from-blue-400 to-blue-600"} p-1 animate-float`}
             >
               <div className="w-full h-full rounded-full overflow-hidden border-4 border-black">
-                <img
-                  src="/ali-shehral-portrait.jpg"
-                  alt="Ali Shehral"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.onerror = null
-                    target.src = "https://placeholder.com/300x300?text=Ali+Shehral"
-                  }}
-                />
+                <ProfileImage />
               </div>
             </div>
           </div>
