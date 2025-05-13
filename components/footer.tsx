@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Github, Twitter, Linkedin, ExternalLink } from "lucide-react"
 import { useTheme } from "next-themes"
 
@@ -16,7 +17,13 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start gap-2 mb-6 md:mb-0">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 relative">
-              <img src="/s-logo.png" alt="Ali Shehral Logo" className="w-full h-full object-contain" />
+              <Image
+                src="/s-logo.png"
+                alt="Ali Shehral Logo"
+                width={32}
+                height={32}
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className={`text-xl font-sora font-bold ${isDark ? "text-gradient" : "text-gradient-light"}`}>
               Ali Shehral

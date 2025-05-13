@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Github, Linkedin, Twitter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
@@ -83,7 +84,13 @@ export default function ClientPage() {
               className={`aspect-square rounded-full ${isDark ? "bg-gradient-to-br from-red-700 to-red-950" : "bg-gradient-to-br from-blue-400 to-blue-600"} p-1 animate-float`}
             >
               <div className="w-full h-full rounded-full overflow-hidden border-4 border-black">
-                <img src="/ali-shehral-portrait.jpg" alt="Ali Shehral" className="w-full h-full object-cover" />
+                <Image
+                  src="/ali-shehral-portrait.jpg"
+                  alt="Ali Shehral"
+                  width={300}
+                  height={300}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
