@@ -14,8 +14,13 @@ export default function Footer() {
     >
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex flex-col items-center md:items-start gap-2 mb-6 md:mb-0">
-          <div className={`text-xl font-sora font-bold ${isDark ? "text-gradient" : "text-gradient-light"}`}>
-            Ali Shehral
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 relative">
+              <img src="/s-logo.png" alt="Ali Shehral Logo" className="w-full h-full object-contain" />
+            </div>
+            <div className={`text-xl font-sora font-bold ${isDark ? "text-gradient" : "text-gradient-light"}`}>
+              Ali Shehral
+            </div>
           </div>
           <div className={`${isDark ? "text-gray-400" : "text-gray-500"}`}>
             © {new Date().getFullYear()} All rights reserved.

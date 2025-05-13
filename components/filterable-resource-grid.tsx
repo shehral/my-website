@@ -6,8 +6,9 @@ import { useState, useEffect } from "react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Filter, Search } from "lucide-react"
+import { Filter, Search } from 'lucide-react'
 import { useTheme } from "next-themes"
+import { cn } from "@/lib/utils"
 
 interface Resource {
   id: string
@@ -27,8 +28,8 @@ export function FilterableResourceGrid({ resources, children, renderResource }: 
   const [activeFilter, setActiveFilter] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [filteredResources, setFilteredResources] = useState(resources)
-  const { theme } = useTheme()
-  const isDark = theme === "dark"
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === "dark"
 
   // Get unique tags from resources
   const tags = [
@@ -81,17 +82,22 @@ export function FilterableResourceGrid({ resources, children, renderResource }: 
 
       <Tabs defaultValue="all" value={activeFilter} onValueChange={setActiveFilter} className="w-full">
         <TabsList
-          className={`grid grid-cols-${Math.min(tags.length, 5)} ${isDark ? "bg-black border border-gray-800" : "bg-white border border-blue-200"} p-1 rounded-lg`}
+          className={cn(
+            "w-full flex flex-row",
+            isDark ? "bg-black border border-gray-800" : "bg-white border border-blue-200",
+            "p-1 rounded-lg"
+          )}
         >
           {tags.map((tag) => (
             <TabsTrigger
               key={tag}
               value={tag}
-              className={`capitalize ${
+              className={cn(
+                "flex-1 capitalize",
                 isDark
                   ? "data-[state=active]:bg-red-950 data-[state=active]:text-white"
                   : "data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700"
-              }`}
+              )}
             >
               {tag}
             </TabsTrigger>

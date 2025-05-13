@@ -86,15 +86,6 @@ export default function ClientPage() {
                 <img src="/ali-shehral-portrait.jpg" alt="Ali Shehral" className="w-full h-full object-cover" />
               </div>
             </div>
-            <div
-              className={`absolute -bottom-4 -right-4 ${isDark ? "bg-black" : "bg-white"} p-2 rounded-lg ${isDark ? "border-gray-800" : "border-blue-200"} border`}
-            >
-              <div
-                className={`px-3 py-1 ${isDark ? "bg-red-950" : "bg-blue-100"} rounded-full text-sm font-medium ${isDark ? "text-white" : "text-blue-700"}`}
-              >
-                AI Researcher
-              </div>
-            </div>
           </div>
         </div>
 
