@@ -39,8 +39,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-black text-white min-h-screen flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+      <body className="min-h-screen flex flex-col">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
           <NeuralField />
           <Navbar />
           <div className="flex-grow">{children}</div>

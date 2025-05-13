@@ -4,9 +4,12 @@ import { useCallback, useEffect, useState } from "react"
 import Particles from "react-tsparticles"
 import { loadSlim } from "tsparticles-slim"
 import type { Engine } from "tsparticles-engine"
+import { useTheme } from "next-themes"
 
 export default function NeuralField() {
   const [mounted, setMounted] = useState(false)
+  const { theme } = useTheme()
+  const isDark = theme === "dark"
 
   useEffect(() => {
     setMounted(true)
@@ -26,16 +29,16 @@ export default function NeuralField() {
         options={{
           background: {
             color: {
-              value: "#000000",
+              value: isDark ? "#000000" : "#ffffff",
             },
           },
           fpsLimit: 60,
           particles: {
             color: {
-              value: ["#d30000", "#ff3333", "#ff6666"],
+              value: isDark ? ["#d30000", "#ff3333", "#ff6666"] : ["#2563eb", "#3b82f6", "#60a5fa"],
             },
             links: {
-              color: "#d30000",
+              color: isDark ? "#d30000" : "#2563eb",
               distance: 180,
               enable: true,
               opacity: 0.3,
@@ -105,7 +108,7 @@ export default function NeuralField() {
                 distance: 180,
                 links: {
                   opacity: 0.8,
-                  color: "#ff3333",
+                  color: isDark ? "#ff3333" : "#3b82f6",
                 },
               },
               push: {

@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils"
 
 const Tabs = TabsPrimitive.Root
 
+// This is a UI primitive component. For filtering functionality,
+// implement the filtering logic in the component that uses these tabs.
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
