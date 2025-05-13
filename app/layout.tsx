@@ -6,6 +6,8 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import NeuralField from "@/components/neural-field"
 import { ThemeProvider } from "@/components/theme-provider"
+import { EnhancedAnalytics } from "@/components/enhanced-analytics"
+import { Suspense } from "react"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -98,8 +100,11 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
           <NeuralField />
           <Navbar />
-          <div className="flex-grow mt-20">{children}</div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className="flex-grow mt-20">{children}</div>
+          </Suspense>
           <Footer />
+          <EnhancedAnalytics />
         </ThemeProvider>
       </body>
     </html>
