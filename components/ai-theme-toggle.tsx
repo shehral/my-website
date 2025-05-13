@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 export function AIThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   // Prevent hydration mismatch
@@ -13,9 +13,11 @@ export function AIThemeToggle() {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  if (!mounted) {
+    return <div className="h-12 w-12 rounded-full bg-black/20"></div>
+  }
 
-  const isDark = theme === "dark"
+  const isDark = resolvedTheme === "dark"
 
   return (
     <button

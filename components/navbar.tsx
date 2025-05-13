@@ -12,8 +12,14 @@ export default function Navbar() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { theme } = useTheme()
-  const isDark = theme === "dark"
+  const [mounted, setMounted] = useState(false)
+  const { theme, resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === "dark"
+
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,74 +29,102 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Artificial Intelligence", href: "/ai" },
     { name: "With Love & Gratitude", href: "/gratitude" },
   ]
 
-  return (
-    <nav
-      className={cn(
-        "fixed top-0 right-0 z-50 w-full transition-all duration-300",
-        scrolled ? "py-2" : "py-4",
-        isDark ? "bg-black/70" : "bg-white/70",
-        "backdrop-blur-sm",
-      )}
-    >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className={`text-xl font-sora font-bold ${isDark ? "text-gradient" : "text-gradient-light"}`}>
-          Ali Shehral
-        </Link>
-
-        <div className="flex items-center gap-4">
-          {/* Desktop navigation */}
-          <div className="hidden md:flex items-center">
-            <div
-              className={`flex space-x-1 ${isDark ? "bg-black/70" : "bg-white/70"} backdrop-blur-sm px-1 py-1 rounded-full ${isDark ? "border-gray-800" : "border-blue-200"} border`}
-            >
-              {navItems.map((item) => {
-                const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href))
-
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`relative px-4 py-2 rounded-full transition-colors ${
-                      isActive
-                        ? isDark
-                          ? "text-white bg-red-900"
-                          : "text-white bg-blue-600"
-                        : isDark
-                          ? "text-gray-400 hover:text-white"
-                          : "text-gray-600 hover:text-blue-700"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                )
-              })}
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <nav className="fixed top-0 right-0 z-50 w-full py-4 bg-black/70 backdrop-blur-sm">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="text-xl font-sora font-bold text-gradient">Ali Shehral</div>
+          <div className="flex items-center gap-4">
+            <div className="h-12 w-12 rounded-full bg-black/70"></div>
+            <div className="p-2 rounded-full bg-black/70 border border-gray-800">
+              <div className="h-6 w-6"></div>
             </div>
           </div>
-
-          {/* Theme Toggle */}
-          <AIThemeToggle />
-
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden p-2 rounded-full bg-black/70 backdrop-blur-sm border border-gray-800"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
+      </nav>
+    )
+  }
 
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div
-            className={`md:hidden fixed inset-0 top-16 ${isDark ? "bg-black/95" : "bg-white/95"} backdrop-blur-md z-40 flex flex-col items-center justify-center`}
-          >
-            <div className="flex flex-col space-y-6 text-center">
+  return (
+    <>
+      <nav
+        className={cn(
+          "fixed top-0 right-0 z-50 w-full transition-all duration-300",
+          scrolled ? "py-2" : "py-4",
+          isDark ? "bg-black/70" : "bg-white/70",
+          "backdrop-blur-sm",
+        )}
+      >
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <Link href="/" className={`text-xl font-sora font-bold ${isDark ? "text-gradient" : "text-gradient-light"}`}>
+            Ali Shehral
+          </Link>
+
+          <div className="flex items-center gap-4">
+            {/* Desktop navigation */}
+            <div className="hidden md:flex items-center">
+              <div
+                className={`flex space-x-1 ${isDark ? "bg-black/70" : "bg-white/70"} backdrop-blur-sm px-1 py-1 rounded-full ${isDark ? "border-gray-800" : "border-blue-200"} border`}
+              >
+                {navItems.map((item) => {
+                  const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href))
+
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`relative px-4 py-2 rounded-full transition-colors ${
+                        isActive
+                          ? isDark
+                            ? "text-white bg-red-900"
+                            : "text-white bg-blue-600"
+                          : isDark
+                            ? "text-gray-400 hover:text-white"
+                            : "text-gray-600 hover:text-blue-700"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Theme Toggle */}
+            <AIThemeToggle />
+
+            {/* Mobile menu button */}
+            <button
+              className="md:hidden p-2 rounded-full bg-black/70 backdrop-blur-sm border border-gray-800"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile menu - Separate from the main content */}
+      {isMenuOpen && (
+        <div
+          className={`fixed inset-0 z-40 ${isDark ? "bg-black/95" : "bg-white/95"} backdrop-blur-md pt-20`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <div className="container mx-auto px-4 py-8">
+            <div className="flex flex-col space-y-6">
               {navItems.map((item) => {
                 const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href))
 
@@ -107,7 +141,6 @@ export default function Navbar() {
                           ? "text-gray-300 hover:text-red-500"
                           : "text-gray-700 hover:text-blue-600"
                     }`}
-                    onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
@@ -115,8 +148,8 @@ export default function Navbar() {
               })}
             </div>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      )}
+    </>
   )
 }

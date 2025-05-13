@@ -38,12 +38,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${inter.variable} ${sora.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
           <NeuralField />
           <Navbar />
-          <div className="flex-grow">{children}</div>
+          <div className="flex-grow mt-20">{children}</div>
           <Footer />
         </ThemeProvider>
       </body>
