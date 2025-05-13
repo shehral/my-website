@@ -6,7 +6,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import NeuralField from "@/components/neural-field"
 import { ThemeProvider } from "@/components/theme-provider"
-import { EnhancedAnalytics } from "@/components/enhanced-analytics"
+import { Analytics } from "@vercel/analytics/react"
 import { Suspense } from "react"
 
 const inter = Inter({
@@ -98,13 +98,19 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${sora.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
-          <NeuralField />
-          <Navbar />
-          <Suspense fallback={<div>Loading...</div>}>
-            <div className="flex-grow mt-20">{children}</div>
+          <Suspense fallback={null}>
+            <NeuralField />
           </Suspense>
-          <Footer />
-          <EnhancedAnalytics />
+          <Suspense fallback={<div className="fixed top-0 w-full h-16 bg-black/70 backdrop-blur-sm z-50"></div>}>
+            <Navbar />
+          </Suspense>
+          <div className="flex-grow mt-20">
+            <Suspense fallback={<div className="container mx-auto py-24 px-4">Loading...</div>}>{children}</Suspense>
+          </div>
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
