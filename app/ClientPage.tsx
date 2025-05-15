@@ -2,13 +2,14 @@
 
 import Link from "next/link"
 import { ArrowRight, Github, Linkedin, Twitter } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
 import { ProfileImage } from "@/components/profile-image"
+import { useState } from "react"
 
 export default function ClientPage() {
   const { theme } = useTheme()
   const isDark = theme === "dark"
+  const [hoverExplore, setHoverExplore] = useState(false)
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
@@ -17,7 +18,7 @@ export default function ClientPage() {
           <div className="space-y-8">
             <div className="space-y-4">
               <p className={`${isDark ? "text-red-500" : "text-blue-600"} font-space tracking-wider`}>
-                MSCS STUDENT AT NORTHEASTERN UNIVERSITY
+                MSCS STUDENT · PRESIDENT OF NEURAI LAB · AI & QUANT FINANCE MECHANIC · GUITARIST · DUCATI RIDER
               </p>
               <h1
                 className={`text-6xl md:text-7xl lg:text-8xl font-sora font-extrabold ${isDark ? "text-gradient" : "text-gradient-light"} animate-gradient`}
@@ -25,56 +26,61 @@ export default function ClientPage() {
                 Ali Shehral
               </h1>
               <p className={`text-xl md:text-2xl max-w-2xl ${isDark ? "text-gray-300" : "text-gray-700"} font-space`}>
-                President of NEURAI Lab · Builder of AI & Quant Finance tools · Guitarist & Ducati rider
+                Writes code so the robots behave; rides bikes so he remembers he's squishy; riffs on guitar so he knows
+                he's neither AI nor Achilles.
+              </p>
+              <p className={`text-xl md:text-2xl max-w-2xl ${isDark ? "text-gray-300" : "text-gray-700"} font-space`}>
+                This site is part tinkerer's journal, part jam-session setlist, part curated reading list—a peek at
+                what's driving my experiments and whims.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <Button
-                asChild
-                size="lg"
-                className={`${isDark ? "bg-red-700 hover:bg-red-600" : "bg-blue-600 hover:bg-blue-500"} text-white border-none`}
+            <div className="flex flex-wrap items-center justify-between border-t border-b py-4 mt-8 mb-2 border-opacity-20 border-gray-500">
+              <Link
+                href="/ai"
+                className={`group flex items-center text-2xl font-medium ${isDark ? "text-white" : "text-gray-900"} transition-all duration-300`}
+                onMouseEnter={() => setHoverExplore(true)}
+                onMouseLeave={() => setHoverExplore(false)}
               >
-                <Link href="/ai" className="group">
+                <span className="relative">
                   Explore My Work
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
+                  <span
+                    className={`absolute -bottom-1 left-0 w-0 h-0.5 ${isDark ? "bg-red-500" : "bg-blue-500"} transition-all duration-300 ${hoverExplore ? "w-full" : ""}`}
+                  ></span>
+                </span>
+                <ArrowRight
+                  className={`ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 ${isDark ? "group-hover:text-red-500" : "group-hover:text-blue-500"}`}
+                />
+              </Link>
 
-              <div className="flex space-x-3">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  asChild
-                  className={`rounded-full ${isDark ? "border-gray-700 hover:border-red-500 hover:bg-red-950" : "border-blue-200 hover:border-blue-500 hover:bg-blue-50"}`}
+              <div className="flex space-x-8">
+                <a
+                  href="https://github.com/shehral"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${isDark ? "text-white hover:text-red-500" : "text-gray-900 hover:text-blue-500"} transition-colors duration-300 transform hover:scale-110`}
                 >
-                  <a href="https://github.com/shehral" target="_blank" rel="noopener noreferrer">
-                    <Github className="h-5 w-5" />
-                    <span className="sr-only">GitHub</span>
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  asChild
-                  className={`rounded-full ${isDark ? "border-gray-700 hover:border-red-500 hover:bg-red-950" : "border-blue-200 hover:border-blue-500 hover:bg-blue-50"}`}
+                  <Github className="h-6 w-6" />
+                  <span className="sr-only">GitHub</span>
+                </a>
+                <a
+                  href="https://x.com/shehral_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${isDark ? "text-white hover:text-red-500" : "text-gray-900 hover:text-blue-500"} transition-colors duration-300 transform hover:scale-110`}
                 >
-                  <a href="https://x.com/shehral_" target="_blank" rel="noopener noreferrer">
-                    <Twitter className="h-5 w-5" />
-                    <span className="sr-only">Twitter</span>
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  asChild
-                  className={`rounded-full ${isDark ? "border-gray-700 hover:border-red-500 hover:bg-red-950" : "border-blue-200 hover:border-blue-500 hover:bg-blue-50"}`}
+                  <Twitter className="h-6 w-6" />
+                  <span className="sr-only">Twitter</span>
+                </a>
+                <a
+                  href="https://linkedin.com/in/shehral/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${isDark ? "text-white hover:text-red-500" : "text-gray-900 hover:text-blue-500"} transition-colors duration-300 transform hover:scale-110`}
                 >
-                  <a href="https://www.linkedin.com/in/shehral/" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="h-5 w-5" />
-                    <span className="sr-only">LinkedIn</span>
-                  </a>
-                </Button>
+                  <Linkedin className="h-6 w-6" />
+                  <span className="sr-only">LinkedIn</span>
+                </a>
               </div>
             </div>
           </div>

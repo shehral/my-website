@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Ali Shehral | About",
   description:
-    "MSCS student at Northeastern University · President of NEURAI Lab · Builder of AI & Quant Finance tools",
+    "Writes code so the robots behave; rides bikes so he remembers he's squishy; riffs on guitar so he knows he's neither AI nor Achilles.",
 }
 
 import ClientPage from "./ClientPage"
