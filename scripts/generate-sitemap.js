@@ -7,7 +7,7 @@ const domain = "https://shehral.com"
 // Function to get all page routes
 function getPageRoutes() {
   // Define your routes here - add more as you create new pages
-  return ["/", "/ai", "/ai/interpretability", "/ai/reading", "/ai/resources", "/gratitude"]
+  return ["/", "/ai", "/ai/interpretability", "/ai/reading", "/ai/resources", "/rational-riffs", "/gratitude"]
 }
 
 // Generate sitemap XML

@@ -38,6 +38,7 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Artificial Intelligence", href: "/ai" },
+    { name: "Rational Riffs", href: "/rational-riffs" },
     { name: "With Love & Gratitude", href: "/gratitude" },
   ]
 
