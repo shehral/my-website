@@ -96,9 +96,10 @@ export default function InterpretabilityClientPage() {
     },
     {
       id: "7",
-      title: "Mechanistic Interpretability for Large Language Models",
-      href: "https://arxiv.org/pdf/2503.11926",
-      description: "Comprehensive overview of mechanistic interpretability techniques for LLMs.",
+      title: "The Mythos of Model Interpretability",
+      href: "https://arxiv.org/pdf/1606.03490",
+      description:
+        "Zachary Lipton's seminal paper examining what interpretability means and challenging common assumptions.",
       tag: "paper",
     },
     {
@@ -106,6 +107,20 @@ export default function InterpretabilityClientPage() {
       title: "Attribution Patching",
       href: "https://www.neelnanda.io/mechanistic-interpretability/attribution-patching",
       description: "Neel Nanda's technique for understanding causal relationships in neural networks.",
+      tag: "method",
+    },
+    {
+      id: "9",
+      title: "Sparse Autoencoders",
+      href: "https://arxiv.org/pdf/2309.08600",
+      description: "Research on using sparse autoencoders for mechanistic interpretability and feature extraction.",
+      tag: "method",
+    },
+    {
+      id: "10",
+      title: "Understanding SAE Features with the Logit Lens",
+      href: "https://www.lesswrong.com/posts/qykrYY6rXXM7EEs8Q/understanding-sae-features-with-the-logit-lens",
+      description: "Practical approach to interpreting sparse autoencoder features using the logit lens technique.",
       tag: "method",
     },
     {
