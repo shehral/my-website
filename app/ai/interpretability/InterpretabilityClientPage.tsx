@@ -109,20 +109,6 @@ export default function InterpretabilityClientPage() {
       tag: "method",
     },
     {
-      id: "9",
-      title: "Layer-wise Relevance Propagation",
-      href: "https://arxiv.org/pdf/1606.03490",
-      description: "Technique for visualizing the contributions of individual neurons to predictions.",
-      tag: "paper",
-    },
-    {
-      id: "10",
-      title: "A Unified Approach to Interpreting Model Predictions",
-      href: "https://arxiv.org/pdf/1703.03717",
-      description: "SHAP (SHapley Additive exPlanations) framework for model interpretability.",
-      tag: "paper",
-    },
-    {
       id: "11",
       title: "Open Problems in Mechanistic Interpretability",
       href: "https://arxiv.org/abs/2501.16496",
@@ -158,7 +144,9 @@ export default function InterpretabilityClientPage() {
           />
         )}
       >
-        <p className="text-xl mb-4">Below are the most influential resources I recommend:</p>
+        <p className="text-xl mb-4">
+          Below are some of the resources recommended for someone looking to learn more about the space:
+        </p>
       </FilterableResourceGrid>
 
       <section className="mt-12 space-y-8">

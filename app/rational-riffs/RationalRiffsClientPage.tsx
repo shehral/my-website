@@ -62,7 +62,7 @@ export default function RationalRiffsClientPage() {
     },
     {
       title: "Rationality: Start Here",
-      href: "https://www.lesswrong.com/rationality",
+      href: "https://www.lesswrong.com/rationality#Kqs6GR7F5xziuSyGZ",
       takeaway: "Gateway collection of the best essays on forming good beliefs.",
       whyPicked: "Foundational syllabus that shaped my AI-safety worldview.",
     },
