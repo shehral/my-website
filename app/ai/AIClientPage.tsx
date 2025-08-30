@@ -49,6 +49,10 @@ export default function AIClientPage() {
           </p>
         </section>
       </div>
+
+      <div className={`mt-16 pt-8 border-t ${isDark ? "border-gray-800" : "border-blue-100"} text-center`}>
+        <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>Last Updated: 7th June 2025</p>
+      </div>
     </div>
   )
 }

@@ -274,6 +274,10 @@ export default function InterpretabilityClientPage() {
       <blockquote className={`my-8 border-l-4 ${isDark ? "border-red-700" : "border-blue-500"} pl-4 italic`}>
         🛠️ <em>Coming soon</em>: my own neuron-lens experiments & code notebooks.
       </blockquote>
+
+      <div className={`mt-16 pt-8 border-t ${isDark ? "border-gray-800" : "border-blue-100"} text-center`}>
+        <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>Last Updated: 7th June 2025</p>
+      </div>
     </div>
   )
 }
