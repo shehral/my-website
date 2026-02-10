@@ -1,8 +1,8 @@
 "use client"
 
-import { type ReactNode } from "react"
+import { type ReactNode, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
+import { ArrowLeft, ArrowRight, ExternalLink, Link2, Check } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useTheme } from "next-themes"
@@ -56,6 +56,54 @@ function renderProseWithLinks(text: string, isDark: boolean): ReactNode[] {
   return parts
 }
 
+function ShareButtons({ title, slug, isDark }: { title: string; slug: string; isDark: boolean }) {
+  const [copied, setCopied] = useState(false)
+  const url = `https://shehral.com/aria/${slug}`
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(url)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  const tweetUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`
+
+  return (
+    <div className="flex items-center gap-3 mt-6">
+      <button
+        onClick={handleCopy}
+        className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border transition-all ${
+          copied
+            ? isDark
+              ? "border-green-700 text-green-400 bg-green-950/30"
+              : "border-green-400 text-green-600 bg-green-50"
+            : isDark
+              ? "border-gray-700 text-gray-400 hover:text-white hover:border-gray-500"
+              : "border-gray-300 text-gray-500 hover:text-gray-700 hover:border-gray-400"
+        }`}
+      >
+        {copied ? <Check size={12} /> : <Link2 size={12} />}
+        {copied ? "Copied!" : "Copy link"}
+      </button>
+      <a
+        href={tweetUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border transition-all ${
+          isDark
+            ? "border-gray-700 text-gray-400 hover:text-white hover:border-gray-500"
+            : "border-gray-300 text-gray-500 hover:text-gray-700 hover:border-gray-400"
+        }`}
+      >
+        <svg viewBox="0 0 24 24" className="h-3 w-3 fill-current" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+        Share
+      </a>
+    </div>
+  )
+}
+
 interface Props {
   slug: string
 }
@@ -103,6 +151,13 @@ export default function RoundupClientPage({ slug }: Props) {
           <p className={`text-lg ${isDark ? "text-gray-300" : "text-gray-700"}`}>
             {roundup.intro}
           </p>
+
+          {/* Share buttons */}
+          <ShareButtons
+            title={`Ali & ARIA #${roundup.number} — ${roundup.title}`}
+            slug={roundup.slug}
+            isDark={isDark}
+          />
         </div>
 
         {/* Sections */}
