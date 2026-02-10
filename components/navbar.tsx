@@ -125,11 +125,11 @@ export default function Navbar() {
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden p-2 rounded-full bg-black/70 backdrop-blur-sm border border-gray-800"
+              className={`md:hidden p-2 rounded-full backdrop-blur-sm border ${isDark ? "bg-black/70 border-gray-800" : "bg-white/70 border-blue-200"}`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={24} className={isDark ? "text-white" : "text-gray-700"} /> : <Menu size={24} className={isDark ? "text-white" : "text-gray-700"} />}
             </button>
           </div>
         </div>
