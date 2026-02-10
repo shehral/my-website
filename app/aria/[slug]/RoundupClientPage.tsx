@@ -3,9 +3,10 @@
 import { type ReactNode } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { useTheme } from "next-themes"
-import { getRoundupBySlug, getAdjacentRoundups } from "../data/roundups"
+import { getRoundupBySlug, getAdjacentRoundups, type RoundupVideo } from "../data/roundups"
 
 /**
  * Parses markdown-style [text](url) links within prose into <a> tags.
@@ -119,6 +120,84 @@ export default function RoundupClientPage({ slug }: Props) {
                 <div className={`space-y-4 ${isDark ? "text-gray-300" : "text-gray-700"} leading-relaxed`}>
                   {section.prose.split("\n\n").map((paragraph, i) => (
                     <p key={i}>{renderProseWithLinks(paragraph, isDark)}</p>
+                  ))}
+                </div>
+              )}
+
+              {/* Images (memes, screenshots, diagrams) */}
+              {section.images && section.images.length > 0 && (
+                <div className={`flex flex-col items-center gap-6 ${section.prose ? "mt-6" : ""}`}>
+                  {section.images.map((image) => {
+                    const img = (
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={600}
+                        height={600}
+                        className="w-full h-auto"
+                      />
+                    )
+                    return (
+                      <figure
+                        key={image.src}
+                        className={`rounded-xl overflow-hidden border max-w-md w-full ${isDark ? "border-gray-800 bg-black/30" : "border-blue-200 bg-white/50"}`}
+                      >
+                        {image.href ? (
+                          <a href={image.href} target="_blank" rel="noopener noreferrer" className="block relative group">
+                            {img}
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-colors">
+                              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm">
+                                ▶ Watch
+                              </span>
+                            </div>
+                          </a>
+                        ) : (
+                          img
+                        )}
+                        {image.caption && (
+                          <figcaption className={`px-3 py-2 text-xs text-center ${isDark ? "text-gray-500" : "text-gray-400"}`}>
+                            {image.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    )
+                  })}
+                </div>
+              )}
+
+              {/* Videos (YouTube embeds or self-hosted clips) */}
+              {section.videos && section.videos.length > 0 && (
+                <div className={`flex flex-col items-center gap-6 ${section.prose || section.images ? "mt-6" : ""}`}>
+                  {section.videos.map((video, i) => (
+                    <figure
+                      key={`video-${i}`}
+                      className={`rounded-xl overflow-hidden border max-w-lg w-full ${isDark ? "border-gray-800 bg-black/30" : "border-blue-200 bg-white/50"}`}
+                    >
+                      {video.type === "youtube" ? (
+                        <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                          <iframe
+                            src={`https://www.youtube-nocookie.com/embed/${video.src}`}
+                            title={video.caption || "Embedded video"}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="absolute inset-0 w-full h-full"
+                          />
+                        </div>
+                      ) : (
+                        <video
+                          src={video.src}
+                          controls
+                          preload="metadata"
+                          playsInline
+                          className="w-full h-auto"
+                        />
+                      )}
+                      {video.caption && (
+                        <figcaption className={`px-3 py-2 text-xs text-center ${isDark ? "text-gray-500" : "text-gray-400"}`}>
+                          {video.caption}
+                        </figcaption>
+                      )}
+                    </figure>
                   ))}
                 </div>
               )}

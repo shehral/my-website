@@ -17,6 +17,7 @@
     "@sveltejs/kit": "latest",
     "@tailwindcss/typography": "latest",
     "@vercel/analytics": "latest",
+    "@vercel/blob": "^2.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "latest",
