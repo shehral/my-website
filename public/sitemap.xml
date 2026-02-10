@@ -2,44 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shehral.com/</loc>
-    <lastmod>2026-02-10T06:23:43.646Z</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://shehral.com/ai</loc>
-    <lastmod>2026-02-10T06:23:43.646Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://shehral.com/aria</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://shehral.com/ai/interpretability</loc>
-    <lastmod>2026-02-10T06:23:43.646Z</lastmod>
+    <loc>https://shehral.com/aria/003-the-dark-factory</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shehral.com/ai/reading</loc>
-    <lastmod>2026-02-10T06:23:43.646Z</lastmod>
+    <loc>https://shehral.com/aria/002-agents-that-remember</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shehral.com/ai/resources</loc>
-    <lastmod>2026-02-10T06:23:43.646Z</lastmod>
+    <loc>https://shehral.com/aria/001-meet-aria</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shehral.com/rational-riffs</loc>
-    <lastmod>2026-02-10T06:23:43.646Z</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://shehral.com/library</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://shehral.com/gratitude</loc>
-    <lastmod>2026-02-10T06:23:43.646Z</lastmod>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
 </urlset>
