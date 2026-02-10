@@ -67,6 +67,15 @@ const interpretability: LibraryResource[] = [
     tags: ["anthropic", "circuits", "attribution"],
   },
   {
+    title: "Anthropic — The Assistant Axis: Persona Vectors in Language Models",
+    href: "https://www.anthropic.com/research/assistant-axis",
+    annotation: "The leading component of persona space captures how 'Assistant-like' a model is. Drift from this axis makes models susceptible to jailbreaks. Activation capping cuts harmful outputs ~50% without hurting capability.",
+    type: "paper",
+    importance: 3,
+    category: "interpretability",
+    tags: ["anthropic", "persona", "safety", "activation-space"],
+  },
+  {
     title: "Improving LLM Fairness via Interpretability",
     href: "https://arxiv.org/pdf/2506.10922",
     annotation: "Using mech-interp techniques to find and fix bias in language models.",
