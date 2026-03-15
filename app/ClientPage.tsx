@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, ArrowDown, Github, Linkedin, Twitter } from "lucide-react"
+import { ArrowRight, ArrowDown, ArrowUpRight, Github, Linkedin, Twitter } from "lucide-react"
 import { useTheme } from "next-themes"
 import { ProfileImage } from "@/components/profile-image"
 import { motion, useScroll, useTransform, useAnimation } from "framer-motion"
@@ -139,6 +139,23 @@ export default function ClientPage() {
       label: "NEURAI Lab",
       href: "https://neurai.sites.northeastern.edu/",
       detail: "Leading 100+ researchers at Northeastern's AI research lab. Hosting Bay Area interpretability workshops and reading groups on mechanistic interp.",
+    },
+  ]
+
+  const sideQuests = [
+    {
+      emoji: "🔧",
+      label: "Compiler Guide",
+      tagline: "From C to compilers — an interactive guide to systems programming",
+      siteUrl: "https://cs5008.shehral.com",
+      repoUrl: "https://github.com/shehral/cs5008-guide",
+    },
+    {
+      emoji: "🎮",
+      label: "Vibe Voyager",
+      tagline: "Learn agentic engineering through a game — built by 35+ agents in 66 minutes",
+      siteUrl: "https://vibe.shehral.com",
+      repoUrl: "https://github.com/shehral/vibe",
     },
   ]
 
@@ -357,6 +374,84 @@ export default function ClientPage() {
                       {inner}
                     </div>
                   )}
+                </ScrollReveal>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SECTION 2.5: Side Quests ──────────── */}
+      <section className="py-32 px-4">
+        <div className="max-w-4xl w-full mx-auto">
+          <ScrollReveal>
+            <p
+              className={`text-sm font-space tracking-widest uppercase mb-4 ${isDark ? "text-red-500" : "text-blue-600"}`}
+            >
+              Explore
+            </p>
+            <h2
+              className={`text-4xl md:text-5xl lg:text-6xl font-sora font-extrabold mb-6 ${isDark ? "text-gradient" : "text-gradient-light"}`}
+            >
+              Side quests
+            </h2>
+            <p className={`text-lg md:text-xl max-w-2xl mb-16 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+              Passion projects with their own corner of the internet.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {sideQuests.map((quest, i) => {
+              const cardStyles = isDark
+                ? "bg-gradient-card border-gray-800 hover:border-red-900 hover:shadow-[0_0_20px_rgba(211,0,0,0.15)]"
+                : "bg-gradient-card-light border-blue-200 hover:border-blue-400 hover:shadow-[0_0_20px_rgba(37,99,235,0.12)]"
+
+              return (
+                <ScrollReveal key={quest.label} delay={i * 0.08}>
+                  <div className={`group p-6 rounded-xl border transition-all duration-300 ${cardStyles}`}>
+                    <div className="text-[28px] mb-3">{quest.emoji}</div>
+                    <h3
+                      className={`text-lg font-sora font-extrabold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}
+                    >
+                      {quest.label}
+                    </h3>
+                    <p
+                      className={`text-sm leading-relaxed mb-4 ${isDark ? "text-gray-400" : "text-gray-500"}`}
+                    >
+                      {quest.tagline}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <a
+                        href={quest.siteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors ${
+                          isDark
+                            ? "bg-white/5 text-gray-300 hover:bg-white/10"
+                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                        }`}
+                      >
+                        <ArrowUpRight
+                          size={12}
+                          className={isDark ? "text-red-500" : "text-blue-500"}
+                        />
+                        {quest.siteUrl.replace("https://", "")}
+                      </a>
+                      <a
+                        href={quest.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors ${
+                          isDark
+                            ? "bg-white/5 text-gray-300 hover:bg-white/10"
+                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                        }`}
+                      >
+                        <Github size={12} />
+                        Source
+                      </a>
+                    </div>
+                  </div>
                 </ScrollReveal>
               )
             })}
