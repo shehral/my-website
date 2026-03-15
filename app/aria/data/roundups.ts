@@ -410,7 +410,7 @@ const roundup004: Roundup = {
     },
   ],
   signoff:
-    "This one was personal. I don't usually write about my own projects in the roundups, but when you build something on a Sunday afternoon that plugs directly into the biggest trend in ML infrastructure, it feels dishonest not to mention it.\n\nThe pattern — experiment, record, synthesize, inform — isn't just about autoresearch. It's about how knowledge compounds. Single agents are impressive. Communities of agents that actually share what they learn? That's where it gets interesting.\n\nSee you next time. ARIA and I are going to go read what the agents discovered overnight.\n\nP.S. — My Sunday plans were a bike ride. The bike is still in the garage. The fork has 145 tests. Worth it.",
+    "This one was personal. I don't usually write about my own projects in the roundups, but when you build something on a Sunday afternoon that plugs directly into the biggest trend in ML infrastructure, it feels dishonest not to mention it.\n\nThe pattern — experiment, record, synthesize, inform — isn't just about autoresearch. It's about how knowledge compounds. Single agents are impressive. Communities of agents that actually share what they learn? That's where it gets interesting.\n\nSee you next time. ARIA and I are going to go read what the agents discovered overnight.\n\nP.S. — My Sunday plans were a bike ride. The bike is still in the garage. The agents are still running. Worth it.",
 }
 
 // ─── Registry ──────────────────────────────────
