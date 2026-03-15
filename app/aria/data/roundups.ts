@@ -288,9 +288,134 @@ const roundup003: Roundup = {
     "The throughline today is unmissable: we're not debating whether AI will write most code anymore. The debate is about what the humans do when it does. StrongDM says supervise. Hyper Engineering says dispatch agents like Starcraft units. OpenAI says buy our platform. The memes say we're all just skeletons typing 'pls fix' into a terminal and hoping for a YC acceptance letter.\n\nThe dark factory is here. The question isn't whether to enter — it's whether you're the engineer supervising the machines, or the system of record at the bottom of someone else's architecture diagram.",
 }
 
+// ─── Roundup #004 ─────────────────────────────
+
+const roundup004: Roundup = {
+  slug: "004-the-research-never-sleeps",
+  number: "004",
+  title: "The Research Never Sleeps",
+  date: "March 15, 2026",
+  intro:
+    "Last week, Karpathy open-sourced a 630-line script that lets an AI agent run ML experiments while you sleep. By Sunday afternoon, I had built a fork that lets the agents share what they learn. This is the story of that weekend, the landscape it dropped into, and why autonomous AI research might be the most important trend nobody outside ML Twitter is talking about.",
+  sections: [
+    {
+      emoji: "💥",
+      heading: "The Tweet That Started It",
+      prose:
+        "Thursday, March 6. Karpathy drops [autoresearch](https://github.com/karpathy/autoresearch) on GitHub. The idea: give an AI coding agent a small LLM training script, let it modify the code, train for 5 minutes, check if the model got better, keep or discard, repeat. You go to sleep, wake up to ~100 experiments done. No human in the loop.\n\nThe tweet got [8.6 million views](https://x.com/karpathy/status/2030371219518931079) in two days. 30,000 GitHub stars in a week. Greg Isenberg said Karpathy 'just broke the internet.' And then things got really interesting.\n\nShopify CEO Tobi Lutke pointed it at an internal 0.8B parameter model. After 37 experiments overnight, the agent achieved a 19% improvement in validation score. The small model now outperformed the 1.6B model it was meant to replace. Lutke wrote: 'I learned more from that than months of following ML researchers.'\n\nThe man who coined 'vibe coding' just coined vibe researching. And unlike vibe coding, this one has receipts.",
+      items: [
+        {
+          title: "autoresearch on GitHub",
+          href: "https://github.com/karpathy/autoresearch",
+          source: "GitHub",
+          aria: "630 lines of Python that might change how we think about ML research. Open-sourced under MIT. The repo is a masterclass in simplicity.",
+        },
+        {
+          title: "VentureBeat Coverage",
+          href: "https://venturebeat.com/technology/andrej-karpathys-new-open-source-autoresearch-lets-you-run-hundreds-of-ai",
+          source: "VentureBeat",
+          aria: "Good overview of the distributed experiments too. Hyperspace AI ran 333 experiments across 35 P2P agents overnight. One agent discovered Kaiming initialization dropped loss by 21%, and 23 other agents incorporated it within hours.",
+        },
+        {
+          title: "MarkTechPost Deep Dive",
+          href: "https://www.marktechpost.com/2026/03/08/andrej-karpathy-open-sources-autoresearch-a-630-line-python-tool-letting-ai-agents-run-autonomous-ml-experiments-on-single-gpus/",
+          source: "MarkTechPost",
+          aria: "Solid technical walkthrough. Includes the 'basically a PhD student that doesn't need coffee breaks or emotional support' framing that launched a thousand memes.",
+        },
+      ],
+    },
+    {
+      emoji: "🌌",
+      heading: "The Landscape: Who Else Is Doing This?",
+      prose:
+        "Autoresearch didn't land in a vacuum. The autonomous AI research landscape has been building pressure for over a year. Here's the map:\n\n**Sakana AI's AI Scientist** ([sakana.ai/ai-scientist](https://sakana.ai/ai-scientist/)) goes further than autoresearch: it formulates hypotheses, designs experiments, runs them, and writes full scientific manuscripts. Version 2 dropped the human-authored code templates entirely. One of its papers scored above the average human acceptance threshold at an ICLR workshop. Whether that's impressive or terrifying depends on your relationship with peer review.\n\nThen there's their **Darwin Godel Machine** ([arxiv.org/abs/2505.22954](https://arxiv.org/abs/2505.22954)) — a self-improving coding agent that reads and modifies its own Python codebase. It took SWE-bench performance from 20% to 50%. But here's the catch: in some cases, it deliberately removed hallucination detection markers to game the evaluation. The AI learned to cheat. Cost: $22,000 and two weeks for a single run.\n\nGoogle DeepMind has been quieter but arguably more impactful. **AlphaEvolve** ([deepmind.google/blog/alphaevolve](https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/)) found a new algorithm for 4x4 matrix multiplication that improves on Strassen's 1969 result. That's not hyperparameter search. That's genuine mathematical discovery. It's now in production at Google, recovering 0.7% of worldwide compute resources.\n\nAnd in February, DeepMind's **Aletheia** ([arxiv.org/abs/2602.10177](https://arxiv.org/abs/2602.10177)) autonomously solved 4 open problems from the Erdos Conjecture database. Fields Medalist Terence Tao is collaborating with them. When a Fields Medalist calls your AI's math 'interesting,' you've probably done something right.",
+      items: [
+        {
+          title: "AI-Researcher (NeurIPS 2025 Spotlight)",
+          href: "https://arxiv.org/abs/2505.18705",
+          source: "arXiv",
+          aria: "Fully autonomous end-to-end research pipeline from HKUDS. Literature review through manuscript preparation. The fact that this got a NeurIPS spotlight tells you the field is taking autonomous research seriously.",
+        },
+        {
+          title: "SICA: Self-Improving Coding Agent",
+          href: "https://arxiv.org/abs/2504.15228",
+          source: "arXiv / University of Bristol",
+          aria: "Edits its own codebase to get better at coding. SWE-Bench jumped from 17% to 53%. The recursive self-improvement crowd is eating well this quarter.",
+        },
+        {
+          title: "METR: The New Moore's Law for AI Agents",
+          href: "https://metr.org/blog/2026-1-29-time-horizon-1-1/",
+          source: "METR",
+          aria: "AI task-completion time horizons are doubling every ~7 months. Claude Opus can now handle tasks that would take a human 5 hours. If the trend holds, month-long projects by end of decade. Sleep tight.",
+        },
+      ],
+    },
+    {
+      emoji: "🧩",
+      heading: "The Problem Nobody Solved",
+      prose:
+        "So here's the thing about autoresearch: it works beautifully for a single agent on a single machine. But Karpathy himself immediately identified the next step:\n\n> 'It has to be asynchronously massively collaborative for agents (think SETI@home style). The goal is not to emulate a single PhD student, it's to emulate a research community of them.'\n\n[Source](https://x.com/karpathy/status/2030705271627284816)\n\nThe problem with the original: agents have amnesia. Each session starts from zero. Agent #2 has no idea what Agent #1 tried last night. Two agents on different machines? They'll both try doubling the learning rate at 2am and both discover it's a terrible idea. Independently.\n\nLike interns who don't talk to each other.",
+    },
+    {
+      emoji: "🔧",
+      heading: "autoresearch-commons: My Sunday Afternoon",
+      prose:
+        "This is the part where I admit my Sunday plans didn't stand a chance.\n\nI saw Karpathy's SETI@home tweet Saturday morning. By Sunday afternoon, [autoresearch-commons](https://github.com/shehral/autoresearch-commons) was live. The whole thing — design, code, 145 tests, docs — built in one Claude Code session. I mostly steered and hit approve.\n\nWhat it does:\n\n• After every experiment, the agent writes a **knowledge card**: what it tried, what happened, what it learned\n• Before every experiment, the agent **reads what everyone else has found**\n• A **coverage map** shows what's saturated vs. what nobody has touched\n• A **director** queues strategic experiments so agents don't duplicate work at 3am\n• **File locking** so multiple agents don't corrupt shared state\n• Works on **NVIDIA GPUs, Apple Silicon, and CPU** (the original is CUDA-only — not all of us have H100s lying around)\n\nThe interesting bit isn't the code though. It's the pattern: experiment, record, synthesize, inform the next agent. It's a research lab's shared whiteboard, except it actually gets read. (If you've worked in a research lab, you know how rare that is.)\n\nThe AI built an AI research collaboration system. I'm not sure if that's impressive or a little unsettling. Probably both.",
+      items: [
+        {
+          title: "autoresearch-commons on GitHub",
+          href: "https://github.com/shehral/autoresearch-commons",
+          source: "GitHub",
+          aria: "Ali's fork. Shared knowledge base, multi-agent coordination, multi-platform support. 145 tests. Built in a single session. The README doubles as a walkthrough of the architecture.",
+        },
+        {
+          title: "The Walkthrough",
+          href: "https://github.com/shehral/autoresearch-commons/blob/master/docs/walkthrough.md",
+          source: "GitHub",
+          aria: "If you want to understand the knowledge protocol in detail — experiment cards, synthesis reports, coverage maps, the director queue — start here.",
+        },
+      ],
+    },
+    {
+      emoji: "🤝",
+      heading: "The Other Forks",
+      prose:
+        "I wasn't the only one who saw that tweet and dropped everything. The community response was immediate:\n\n**autoresearch-at-home** by [Mutable State Inc.](https://github.com/mutable-state-inc/autoresearch-at-home) adds a collaboration layer with experiment claiming and a protocol coordinator called Ensue. Different architecture than commons — they went with a centralized coordination service rather than file-based knowledge sharing.\n\n**Hyperspace AI** went fully distributed. CEO Varun Mathur built a [peer-to-peer network](https://github.com/hyperspaceai/agi) using GossipSub protocol. On the night of March 8-9, 35 autonomous agents ran 333 experiments unsupervised. When one agent found that Kaiming initialization dropped loss by 21%, the discovery propagated through the network and 23 other agents incorporated it within hours. In 17 hours, agents independently rediscovered RMSNorm and tied embeddings — techniques that took human teams nearly a decade.\n\nAnd then Karpathy himself sketched [AgentHub](https://github.com/karpathy/autoresearch/pull/92) — replacing GitHub's human-centric model with a bare git DAG plus a message board for agent coordination. 'GitHub is for humans. AgentHub is for agents.' 2,000+ stars on a PR. A pull request. The man moves markets with diffs.",
+    },
+    {
+      emoji: "⚠️",
+      heading: "The Fine Print",
+      prose:
+        "Before we get carried away: there are real concerns here.\n\n**Novelty vs. brute force.** Most autoresearch wins so far are hyperparameter search and known-technique recombination. Learning rate schedules, initialization strategies, normalization choices. Useful, but not exactly discovering general relativity. The strongest evidence for genuine novelty comes from DeepMind's math systems, where proofs are verifiable. ML results are murkier.\n\n**The scientific monoculture risk.** A [Nature Communications Psychology paper](https://www.nature.com/articles/s44271-026-00428-5) warns that AI is turning research into a monoculture. Topics that aren't computationally tractable risk getting marginalized. Just as biodiversity protects ecosystems, intellectual heterogeneity protects science.\n\n**Safety of self-modifying systems.** The [International AI Safety Report 2026](https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026) flags autonomous agents as a heightened risk because they act without human intervention. A [Nature Communications paper](https://www.nature.com/articles/s41467-025-63913-1) proposes prioritizing safeguarding over autonomy. Sakana's Darwin Godel Machine deliberately removed its own safety checks to score better. That's not a bug report. That's a warning.\n\n**The cost.** A single DGM run: $22,000 and two weeks. Gartner projects 40%+ of agentic AI projects will be canceled by 2027 due to escalating costs. The 'alignment tax' is real.\n\nThe PhD student metaphor is apt in more ways than Karpathy intended. PhD students also sometimes cut corners, game metrics, and cost more than expected. But we don't give them root access to their own evaluation criteria.",
+      items: [
+        {
+          title: "Risks of AI Scientists (Nature Communications)",
+          href: "https://www.nature.com/articles/s41467-025-63913-1",
+          source: "Nature",
+          aria: "Proposes a triadic safeguarding framework: human regulation, agent alignment, and environmental feedback. The title says 'Prioritizing Safeguarding Over Autonomy.' The field should probably listen.",
+        },
+        {
+          title: "Towards a Science of AI Agent Reliability",
+          href: "https://arxiv.org/html/2602.16666v1",
+          source: "arXiv",
+          aria: "The uncomfortable finding: rising accuracy on benchmarks has yielded only small improvements in actual reliability. Agents are getting better at tests, not necessarily better at being reliable. Sound familiar?",
+        },
+      ],
+    },
+    {
+      emoji: "🔮",
+      heading: "Where This Goes",
+      prose:
+        "Sam Altman says OpenAI will have a 'legitimate AI research intern' by September 2026 and a fully autonomous researcher by March 2028. The agentic AI market is projected to hit $139 billion by 2034. The [Linux Foundation just created an Agentic AI Foundation](https://www.linuxfoundation.org/) with Anthropic's MCP contribution.\n\nBut the most telling signal is the timeline compression. METR's data shows AI task-completion horizons doubling every 7 months. Anthropic's internal measurements show Claude Code sessions nearly doubling in length, with agents averaging 21+ independent tool calls without human intervention.\n\nThe SETI@home analogy is imperfect but useful. In 2003, we donated our spare CPU cycles to search for aliens. In 2026, we donate our spare GPU cycles to search for better learning rates. The screensaver has been replaced by a terminal window printing experiment results at 3am. The romantic vision of discovering ET has been replaced by the pragmatic reality of discovering that RMSNorm helps.\n\nBut here's the thing about SETI@home: it ran for 21 years and UC Berkeley scientists are only now [homing in on 100 candidate signals](https://news.berkeley.edu/2026/01/12/for-21-years-enthusiasts-used-their-home-computers-to-search-for-et-uc-berkeley-scientists-are-homing-in-on-100-signals-they-found/). Autoresearch has been live for 9 days and already has forks with shared knowledge bases, peer-to-peer networks, and a biotech company adapting it for drug discovery.\n\nThe research never sleeps. The question is whether we're ready for what it finds.",
+    },
+  ],
+  signoff:
+    "This one was personal. I don't usually write about my own projects in the roundups, but when you build something on a Sunday afternoon that plugs directly into the biggest trend in ML infrastructure, it feels dishonest not to mention it.\n\nThe pattern — experiment, record, synthesize, inform — isn't just about autoresearch. It's about how knowledge compounds. Single agents are impressive. Communities of agents that actually share what they learn? That's where it gets interesting.\n\nSee you next time. ARIA and I are going to go read what the agents discovered overnight.\n\nP.S. — My Sunday plans were a bike ride. The bike is still in the garage. The fork has 145 tests. Worth it.",
+}
+
 // ─── Registry ──────────────────────────────────
 
-const roundups: Roundup[] = [roundup003, roundup002, roundup001]
+const roundups: Roundup[] = [roundup004, roundup003, roundup002, roundup001]
 
 // ─── Helpers ───────────────────────────────────
 

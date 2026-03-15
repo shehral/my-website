@@ -157,6 +157,13 @@ export default function ClientPage() {
       siteUrl: "https://vibe.shehral.com",
       repoUrl: "https://github.com/shehral/vibe",
     },
+    {
+      emoji: "🧪",
+      label: "autoresearch-commons",
+      tagline: "Collaborative knowledge sharing for autonomous ML research agents",
+      siteUrl: "/aria/004-the-research-never-sleeps",
+      repoUrl: "https://github.com/shehral/autoresearch-commons",
+    },
   ]
 
   return (
@@ -421,22 +428,39 @@ export default function ClientPage() {
                       {quest.tagline}
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <a
-                        href={quest.siteUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors ${
-                          isDark
-                            ? "bg-white/5 text-gray-300 hover:bg-white/10"
-                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                        }`}
-                      >
-                        <ArrowUpRight
-                          size={12}
-                          className={isDark ? "text-red-500" : "text-blue-500"}
-                        />
-                        {quest.siteUrl.replace("https://", "")}
-                      </a>
+                      {quest.siteUrl.startsWith("/") ? (
+                        <Link
+                          href={quest.siteUrl}
+                          className={`inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors ${
+                            isDark
+                              ? "bg-white/5 text-gray-300 hover:bg-white/10"
+                              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                          }`}
+                        >
+                          <ArrowUpRight
+                            size={12}
+                            className={isDark ? "text-red-500" : "text-blue-500"}
+                          />
+                          Roundup
+                        </Link>
+                      ) : (
+                        <a
+                          href={quest.siteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors ${
+                            isDark
+                              ? "bg-white/5 text-gray-300 hover:bg-white/10"
+                              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                          }`}
+                        >
+                          <ArrowUpRight
+                            size={12}
+                            className={isDark ? "text-red-500" : "text-blue-500"}
+                          />
+                          {quest.siteUrl.replace("https://", "")}
+                        </a>
+                      )}
                       <a
                         href={quest.repoUrl}
                         target="_blank"

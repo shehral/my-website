@@ -7,6 +7,7 @@ function getPageRoutes() {
   return [
     { path: "/", changefreq: "weekly", priority: "1.0" },
     { path: "/aria", changefreq: "weekly", priority: "0.9" },
+    { path: "/aria/004-the-research-never-sleeps", changefreq: "monthly", priority: "0.7" },
     { path: "/aria/003-the-dark-factory", changefreq: "monthly", priority: "0.7" },
     { path: "/aria/002-agents-that-remember", changefreq: "monthly", priority: "0.7" },
     { path: "/aria/001-meet-aria", changefreq: "monthly", priority: "0.7" },

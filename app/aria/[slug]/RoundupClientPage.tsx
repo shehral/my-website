@@ -9,8 +9,34 @@ import { useTheme } from "next-themes"
 import { getRoundupBySlug, getAdjacentRoundups, type RoundupVideo } from "../data/roundups"
 
 /**
- * Parses markdown-style [text](url) links within prose into <a> tags.
- * This enables Gwern-style inline annotations in roundup prose sections.
+ * Parses **bold** markdown within a plain text string.
+ */
+function renderBold(text: string, keyPrefix: string): ReactNode[] {
+  const boldPattern = /\*\*([^*]+)\*\*/g
+  const parts: ReactNode[] = []
+  let lastIndex = 0
+  let result: RegExpExecArray | null = null
+
+  boldPattern.lastIndex = 0
+
+  while ((result = boldPattern.exec(text)) !== null) {
+    if (result.index > lastIndex) {
+      parts.push(text.slice(lastIndex, result.index))
+    }
+    parts.push(<strong key={`${keyPrefix}-b-${result.index}`}>{result[1]}</strong>)
+    lastIndex = result.index + result[0].length
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex))
+  }
+
+  return parts
+}
+
+/**
+ * Parses markdown-style [text](url) links and **bold** within prose.
+ * Links are parsed first, then bold is applied to remaining text segments.
  */
 function renderProseWithLinks(text: string, isDark: boolean): ReactNode[] {
   const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g
@@ -18,15 +44,12 @@ function renderProseWithLinks(text: string, isDark: boolean): ReactNode[] {
   let lastIndex = 0
   let result: RegExpExecArray | null = null
 
-  // Reset lastIndex to ensure clean iteration
   linkPattern.lastIndex = 0
 
   while ((result = linkPattern.exec(text)) !== null) {
-    // Text before the link
     if (result.index > lastIndex) {
-      parts.push(text.slice(lastIndex, result.index))
+      parts.push(...renderBold(text.slice(lastIndex, result.index), `t-${result.index}`))
     }
-    // The link itself
     const linkText = result[1]
     const href = result[2]
     const isExternal = href.startsWith("http")
@@ -48,9 +71,8 @@ function renderProseWithLinks(text: string, isDark: boolean): ReactNode[] {
     lastIndex = result.index + result[0].length
   }
 
-  // Remaining text after last link
   if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex))
+    parts.push(...renderBold(text.slice(lastIndex), `t-end`))
   }
 
   return parts
