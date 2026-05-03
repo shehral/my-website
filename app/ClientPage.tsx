@@ -131,6 +131,11 @@ export default function ClientPage() {
       detail: "Exploring how models maintain character through measurable directions in activation space. Inspired by Anthropic's assistant axis research — mapping persona drift and developing lightweight interventions.",
     },
     {
+      label: "Theoria",
+      href: "https://theoria.shehral.com",
+      detail: "An understanding-first autonomous research companion, shipped as a Claude Code plugin. Nine specialized agents run a full research loop — literature orientation, experiments, LaTeX paper writing, mock peer review, citation-anchored code, and educational guides — with a knowledge system that compounds findings across sessions via curator gatekeeping and Hebbian strengthening. Adapts to a researcher's taste profile (novelty vs. rigor, theory vs. empirical, target venues). Outputs publish to a Distill-style site; source on GitHub.",
+    },
+    {
       label: "Ali & ARIA",
       href: "/aria",
       detail: "Building a daily internet roundup system with an AI co-author. Structured memory, collaborative writing, and zero RAG pipelines. Three posts in and the voice is locking in.",
