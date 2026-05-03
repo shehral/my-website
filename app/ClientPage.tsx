@@ -121,6 +121,11 @@ export default function ClientPage() {
 
   const nowItems = [
     {
+      label: "Theoria",
+      href: "https://theoria.shehral.com",
+      detail: "An understanding-first autonomous research companion, shipped as a Claude Code plugin. Nine specialized agents run a full research loop — literature orientation, experiments, LaTeX paper writing, mock peer review, citation-anchored code, and educational guides — with a knowledge system that compounds findings across sessions via curator gatekeeping and Hebbian strengthening. Adapts to a researcher's taste profile (novelty vs. rigor, theory vs. empirical, target venues). Outputs publish to a Distill-style site; source on GitHub.",
+    },
+    {
       label: "Continuum",
       href: "https://github.com/shehral/continuum",
       detail: "Research scholar at Northeastern's HCAI Lab, building Continuum — a system that extracts decision traces from AI-assisted coding sessions and visualizes them as an interactive knowledge graph. Turning ephemeral human-AI collaboration into durable, searchable knowledge.",
@@ -129,11 +134,6 @@ export default function ClientPage() {
       label: "Persona Vectors",
       href: "https://github.com/shehral/PersonaSafe",
       detail: "Exploring how models maintain character through measurable directions in activation space. Inspired by Anthropic's assistant axis research — mapping persona drift and developing lightweight interventions.",
-    },
-    {
-      label: "Theoria",
-      href: "https://theoria.shehral.com",
-      detail: "An understanding-first autonomous research companion, shipped as a Claude Code plugin. Nine specialized agents run a full research loop — literature orientation, experiments, LaTeX paper writing, mock peer review, citation-anchored code, and educational guides — with a knowledge system that compounds findings across sessions via curator gatekeeping and Hebbian strengthening. Adapts to a researcher's taste profile (novelty vs. rigor, theory vs. empirical, target venues). Outputs publish to a Distill-style site; source on GitHub.",
     },
     {
       label: "Ali & ARIA",
