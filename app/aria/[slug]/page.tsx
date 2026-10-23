@@ -4,7 +4,7 @@ import { getAllRoundups, getRoundupBySlug } from "../data/roundups"
 import RoundupClientPage from "./RoundupClientPage"
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 const SITE_URL = "https://shehral.com"
@@ -22,7 +22,8 @@ export function generateStaticParams() {
   }))
 }
 
-export function generateMetadata({ params }: Props): Metadata {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const roundup = getRoundupBySlug(params.slug)
   if (!roundup) return { title: "Not Found" }
 
@@ -61,7 +62,8 @@ export function generateMetadata({ params }: Props): Metadata {
   }
 }
 
-export default function RoundupPage({ params }: Props) {
+export default async function RoundupPage(props: Props) {
+  const params = await props.params;
   const roundup = getRoundupBySlug(params.slug)
   if (!roundup) notFound()
 
